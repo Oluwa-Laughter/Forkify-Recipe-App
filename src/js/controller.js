@@ -5,11 +5,13 @@ import resultView from "./views/resultView.js";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
+if (module.hot) {
+  module.hot.accept;
+}
+
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-
-    console.log(id);
 
     if (!id) return;
     recipeview.renderSpinner();
@@ -19,7 +21,6 @@ const controlRecipes = async function () {
 
     // 2) Rending Recipe
     recipeview.render(model.state.recipe);
-    resultView.render(model.state.recipe);
   } catch (error) {
     console.error(error);
     recipeview.renderError();
@@ -34,6 +35,8 @@ const controlSearchResults = async function () {
 
     // 2) Load search Results
     await model.loadSearchResults(query);
+    // 3) Render Results
+    resultView.render(model.state.search.results);
   } catch (error) {
     console.error(error);
   }

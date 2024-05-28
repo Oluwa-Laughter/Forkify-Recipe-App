@@ -23,8 +23,6 @@ export const loadRecipe = async function (id) {
       publisher: recipe.publisher,
       title: recipe.title,
     };
-
-    console.log(state.recipe);
   } catch (err) {
     console.error(err);
     throw err;
@@ -45,8 +43,6 @@ export const loadSearchResults = async function (query) {
         publisher: rec.publisher,
       };
     });
-
-    console.log(state.search.results);
   } catch (error) {
     throw error;
   }
